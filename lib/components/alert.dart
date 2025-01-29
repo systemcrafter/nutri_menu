@@ -6,6 +6,7 @@ class MyAlert extends StatelessWidget {
   final String confirmButtonText;
   final String cancelButtonText;
   final VoidCallback onConfirm;
+  final bool showCancelButton;
 
   const MyAlert({
     super.key,
@@ -14,6 +15,7 @@ class MyAlert extends StatelessWidget {
     required this.onConfirm,
     this.confirmButtonText = 'OK',
     this.cancelButtonText = 'Cancel',
+    this.showCancelButton = true, // El botón Cancel será opcional
   });
 
   @override
@@ -25,10 +27,12 @@ class MyAlert extends StatelessWidget {
           title: Text(titulo),
           content: Text(message),
           actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.pop(context, 'Cancel'),
-              child: Text(cancelButtonText),
-            ),
+            // Muestra el botón Cancel solo si showCancelButton es true
+            if (showCancelButton)
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: Text(cancelButtonText),
+              ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context); // Cierra el diálogo

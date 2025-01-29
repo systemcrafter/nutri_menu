@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:nutri_menu/components/alert.dart';
 import 'package:nutri_menu/pages/home_page.dart';
 
 class LoginPage extends StatelessWidget {
   final userController = TextEditingController();
   final passwordController = TextEditingController();
+
   LoginPage({super.key});
 
   @override
@@ -47,10 +49,40 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );
+                String email = userController.text;
+                String password = passwordController.text;
+
+                // Verifica si los campos están vacíos
+                if (email.isEmpty || password.isEmpty) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => MyAlert(
+                      titulo: 'Error',
+                      message:
+                          'Los campos de usuario y contraseña no pueden estar vacíos.',
+                      confirmButtonText: 'OK',
+                      onConfirm: () {
+                        // Cierra el diálogo cuando el usuario presione "OK"
+                        Navigator.of(context).pop();
+                      },
+                      showCancelButton: false, // No mostrar el botón Cancel
+                    ),
+                  );
+                } else if (email == 'user' && password == 'password') {
+                  // Navega a HomePage si las credenciales son correctas
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                } else {
+                  // Muestra un mensaje de error si las credenciales no son válidas
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Usuario o contraseña incorrectos'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,

@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
           false, // Evita que el usuario cierre la alerta tocando fuera
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('¡Bienvenido!'),
+          title: Text('¡Bienvenid@!'),
           content: Text('Gracias por usar NutriMenú.'),
           actions: <Widget>[
             TextButton(
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bienvenido a NutriMenú'),
+        title: Text('Bienvenid@ a NutriMenú'),
       ),
       body: Center(
         child: Column(
