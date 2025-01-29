@@ -14,7 +14,6 @@ class LoginPage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 50),
-            const SizedBox(height: 50),
             const Text(
               'Inicio de Sesión',
               style: TextStyle(
@@ -29,7 +28,6 @@ class LoginPage extends StatelessWidget {
                 controller: userController,
                 decoration: const InputDecoration(
                   labelText: 'Correo',
-                  //border: OutlineInputBorder(),
                   border: UnderlineInputBorder(),
                 ),
               ),
@@ -39,9 +37,9 @@ class LoginPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
                 controller: passwordController,
+                obscureText: true, // Oculta la contraseña
                 decoration: const InputDecoration(
                   labelText: 'Contraseña',
-                  //border: OutlineInputBorder(),
                   border: UnderlineInputBorder(),
                 ),
               ),
@@ -49,16 +47,18 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // Color de fondo
+                backgroundColor: Colors.blue,
               ),
               child: const Text(
                 'Ingresar',
                 style: TextStyle(
-                  color: Colors.white, // Texto blanco
+                  color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -70,7 +70,9 @@ class LoginPage extends StatelessWidget {
               children: [
                 const Text('¿No tienes una cuenta aún?   '),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Aquí puedes agregar la navegación a la página de registro
+                  },
                   child: const Text('Regístrate'),
                 ),
               ],
