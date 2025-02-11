@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutri_menu/controllers/login_controller.dart';
 
 class RegisterPage extends StatelessWidget {
   final nameController = TextEditingController();
@@ -83,7 +84,7 @@ class RegisterPage extends StatelessWidget {
                       ),
                     );
                   } else {
-                    // Aquí puedes hacer algo con los datos, como enviarlos a una API
+                    login(name, email, password);
                     debugPrint('Nombre: $name');
                     debugPrint('Correo: $email');
                     debugPrint('Contraseña: $password');
@@ -96,12 +97,6 @@ class RegisterPage extends StatelessWidget {
                         duration: Duration(seconds: 3),
                       ),
                     );
-
-                    // Opcional: Navega a otra página después del registro
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => HomePage()),
-                    // );
                   }
                 },
                 style: ElevatedButton.styleFrom(

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'dart:convert' as convert;
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-Future<bool> login(String email, String password) async {
-  const String baseUrl = 'http://10.0.2.2:8000/api/users'; // emulador Android
+Future<bool> login(String name, String email, String password) async {
+  const String baseUrl =
+      'http://10.0.2.2:8000/api/register'; // emulador Android
   // const String baseUrl = 'http://localhost:8000/api/register';  // emulador Web
 
   var client = http.Client();
@@ -14,14 +15,19 @@ Future<bool> login(String email, String password) async {
     'cache-control': 'no-cache'
   };
 
-  var response = await client.get(url, headers: headers);
+  var body = json.encode({
+    'name': name,
+    'email': email,
+    'password': password,
+  });
 
-  debugPrint(response.body);
+  var response = await client.post(url, headers: headers, body: body);
 
-  // Verifica si la respuesta es exitosa (código 200)
   if (response.statusCode == 200) {
-    return true; // Autenticación exitosa
+    debugPrint(response.body);
+    return true;
   } else {
-    return false; // Autenticación fallida
+    debugPrint('Error en la petición');
+    return false;
   }
 }
