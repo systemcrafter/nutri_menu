@@ -41,6 +41,10 @@ class LogoutPage extends StatelessWidget {
       },
     ).then((value) {
       // Este bloque se ejecuta cuando el diálogo se cierra
+      if (!context.mounted) {
+        return; // Verifica si el contexto todavía está montado
+      }
+
       if (value == 'Sí') {
         // Acción si el usuario elige "Sí"
         _salirDeLaApp();

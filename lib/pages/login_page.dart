@@ -96,6 +96,9 @@ class LoginPage extends StatelessWidget {
                     // Llama a la función login y espera su resultado
                     bool isAuthenticated = await login(email, password);
 
+                    // Verifica si el widget todavía está montado
+                    if (!context.mounted) return;
+
                     if (isAuthenticated) {
                       // Navega a HomePage si las credenciales son correctas
                       Navigator.push(

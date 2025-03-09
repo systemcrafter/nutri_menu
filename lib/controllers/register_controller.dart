@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-Future<bool> login(String email, String password) async {
-  const String baseUrl = 'http://10.0.2.2:8000/api/login'; // emulador Android
-  // const String baseUrl = 'http://localhost:8000/api/login';  // emulador Web
+Future<bool> register(String name, String email, String password) async {
+  const String baseUrl =
+      'http://10.0.2.2:8000/api/register'; // emulador Android
+  // const String baseUrl = 'http://localhost:8000/api/register';  // emulador Web
 
   var client = http.Client();
   var url = Uri.parse(baseUrl);
@@ -15,6 +16,7 @@ Future<bool> login(String email, String password) async {
   };
 
   var body = json.encode({
+    'name': name,
     'email': email,
     'password': password,
   });

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nutri_menu/controllers/login_controller.dart';
+import 'package:nutri_menu/controllers/register_controller.dart';
+import 'package:nutri_menu/pages/login_page.dart';
 
 class RegisterPage extends StatelessWidget {
   final nameController = TextEditingController();
@@ -84,7 +85,7 @@ class RegisterPage extends StatelessWidget {
                       ),
                     );
                   } else {
-                    login(name, email, password);
+                    register(name, email, password);
                     debugPrint('Nombre: $name');
                     debugPrint('Correo: $email');
                     debugPrint('Contraseña: $password');
@@ -97,6 +98,8 @@ class RegisterPage extends StatelessWidget {
                         duration: Duration(seconds: 3),
                       ),
                     );
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
                   }
                 },
                 style: ElevatedButton.styleFrom(
